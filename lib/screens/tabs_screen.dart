@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:noticias_app/screens/screens.dart';
 import 'package:noticias_app/providers/navigation_provider.dart';
  
 import 'package:provider/provider.dart';
@@ -44,13 +43,12 @@ class _Paginas extends StatelessWidget {
   Widget build(BuildContext context) {
     final navigationProvider = Provider.of<NavigationProvider>(context);
 
-    switch (navigationProvider.paginaActual) {
-      case 0:
-        return Tab1Screen();
-      case 1:
-        return Tab2Screen();
-      default:
-        return Tab1Screen();
-    }
+    return PageView(
+      controller: navigationProvider.pageController,
+      children: [
+        Container(color: Colors.green,),
+        Container(color: Colors.blue,),
+      ],
+    );
   }
 }
