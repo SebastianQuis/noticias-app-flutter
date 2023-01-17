@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:noticias_app/providers/navigation_provider.dart';
+import 'package:noticias_app/services/noticias_service.dart';
  
 import 'package:provider/provider.dart';
 
@@ -24,11 +25,11 @@ class _Navegacion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final navigationProvider = Provider.of<NavigationProvider>(context);
-    final currentIndex = navigationProvider.paginaActual;
+    // final noticiasService = Provider.of<NoticiasService>(context);
     
     return BottomNavigationBar(
       onTap: (value) => navigationProvider.paginaActual = value,
-      currentIndex: currentIndex,
+      currentIndex: navigationProvider.paginaActual,
       items: [
         BottomNavigationBarItem( icon: Icon(Icons.person_outline), label: 'Para ti' ),
         BottomNavigationBarItem( icon: Icon(Icons.public), label: 'Encabezados'),
