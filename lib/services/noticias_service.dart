@@ -16,11 +16,11 @@ class NoticiasService with ChangeNotifier {
   }
 
   obtenerEncabezados() async {
-    var uri = Uri.https('newsapi.org', '/v2/top-headlines',
+    var uri = Uri.https(_baseUrl, '/v2/top-headlines',
         {'country': _pais, 'apiKey': _apiKey});
     final resp = await http.get(uri); 
     final noticiasResponse = noticiasResponseFromJson( resp.body );
-    this.encabezados.addAll( noticiasResponse.articles );
+    encabezados.addAll( noticiasResponse.articles );
     notifyListeners();
   }
 

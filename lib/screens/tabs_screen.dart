@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:noticias_app/providers/navigation_provider.dart';
 import 'package:noticias_app/screens/screens.dart';
-import 'package:noticias_app/services/noticias_service.dart';
  
 import 'package:provider/provider.dart';
 

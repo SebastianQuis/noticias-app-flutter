@@ -11,7 +11,8 @@ class NavigationProvider extends ChangeNotifier {
 
   set paginaActual(int valor) {
     this._paginaActual = valor;
-    this._pageController.animateToPage(valor, duration: const Duration(milliseconds: 500), curve: Curves.bounceIn);
+    this._pageController.
+      animateToPage(valor, duration: const Duration(milliseconds: 500), curve: Curves.ease);
     notifyListeners();
   }
 
