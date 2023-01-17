@@ -3,21 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:noticias_app/models/noticias_models.dart';
 import 'package:noticias_app/theme/theme.dart';
 
-class ListaNoticias extends StatelessWidget {  
+class ListaNoticias extends StatefulWidget {  
   final List<Article> encabezados;
   const ListaNoticias( this.encabezados );
 
   @override
+  State<ListaNoticias> createState() => _ListaNoticiasState();
+}
+
+// mantiene estado de la app AutomaticKeepAliveClientMixin
+class _ListaNoticiasState extends State<ListaNoticias> with AutomaticKeepAliveClientMixin {
+  @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: encabezados.length,
+      itemCount: widget.encabezados.length,
       itemBuilder: (BuildContext context, int index) {
         return Column(
           children: [
-            _TarjetaTop( encabezados: encabezados[index], index: index ),
-            _TarjetaTitulo( encabezados[index] ),
-            _TarjetaImagen( encabezados[index] ),
-            _TarjetaBody( encabezados[index] ),
+            _TarjetaTop( encabezados: widget.encabezados[index], index: index ),
+            _TarjetaTitulo( widget.encabezados[index] ),
+            _TarjetaImagen( widget.encabezados[index] ),
+            _TarjetaBody( widget.encabezados[index] ),
             _TarjetaBotones(),
 
             SizedBox( height: 5 ),
@@ -27,6 +33,9 @@ class ListaNoticias extends StatelessWidget {
       },
     );
   }
+  
+  @override
+  bool get wantKeepAlive => true; // true para mantener estado
 }
 
 class _TarjetaBotones extends StatelessWidget {
@@ -83,7 +92,7 @@ class _TarjetaImagen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: const BorderRadius.all( Radius.circular(40) ),
+      borderRadius: const BorderRadius.all( Radius.circular(50) ),
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         child: (encabezados.urlToImage != null) 

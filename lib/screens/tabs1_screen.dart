@@ -10,6 +10,8 @@ class Tab1Screen extends StatelessWidget {
   Widget build(BuildContext context) {
     final noticiasService = Provider.of<NoticiasService>(context);
     
-    return ListaNoticias( noticiasService.encabezados );
+    return noticiasService.encabezados.length > 0
+      ? ListaNoticias( noticiasService.encabezados )
+      : Center( child: CircularProgressIndicator() );
   }
 }

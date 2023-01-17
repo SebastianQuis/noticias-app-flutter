@@ -6,5 +6,6 @@ final theme = ThemeData.dark().copyWith(
     backgroundColor: Colors.white,
     selectedItemColor: Color.fromARGB(255, 93, 156, 238),
     unselectedItemColor: Colors.black54
-  )
+  ),
+  // progressIndicatorTheme: ProgressIndicatorThemeData(color: Color.fromARGB(255, 93, 156, 238),)
 );
