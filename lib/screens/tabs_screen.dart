@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:noticias_app/providers/navigation_provider.dart';
+import 'package:noticias_app/screens/screens.dart';
 import 'package:noticias_app/services/noticias_service.dart';
  
 import 'package:provider/provider.dart';
@@ -47,8 +48,8 @@ class _Paginas extends StatelessWidget {
     return PageView(
       controller: navigationProvider.pageController,
       children: [
-        Container(color: Colors.green,),
-        Container(color: Colors.blue,),
+        Tab1Screen(),
+        Tab2Screen(),
       ],
     );
   }

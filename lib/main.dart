@@ -31,7 +31,9 @@ class MyApp extends StatelessWidget {
       initialRoute: 'tabs',
       theme: theme,
       routes: {
-        'tabs': (context) => TabsScreen()
+        'tabs': (context) => TabsScreen(),
+        'tab1': (context) => Tab1Screen(),
+        'tab2': (context) => Tab2Screen(),
       },
     );
   }
