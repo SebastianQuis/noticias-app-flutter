@@ -45,6 +45,7 @@ class _Paginas extends StatelessWidget {
     final navigationProvider = Provider.of<NavigationProvider>(context);
 
     return PageView(
+      physics: NeverScrollableScrollPhysics(),
       controller: navigationProvider.pageController,
       children: [
         Tab1Screen(),
