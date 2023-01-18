@@ -5,6 +5,8 @@ import 'package:noticias_app/models/noticias_models.dart';
 import 'package:http/http.dart' as http;
 import 'dart:core';
 
+import 'package:url_launcher/url_launcher.dart';
+
 
 class NoticiasService with ChangeNotifier {
 
@@ -33,7 +35,7 @@ class NoticiasService with ChangeNotifier {
     obtenerEncabezados();
 
     categorias.forEach( (item) { 
-      mapaArticulos[item.name] = List.empty();
+      mapaArticulos[item.name] = [];
     });
 
   }
@@ -46,6 +48,8 @@ class NoticiasService with ChangeNotifier {
     notifyListeners(); 
   }
 
+  List<Article> get obtenerListaEncabezados => mapaArticulos[ categoriaSeleccionada ]!;
+
   obtenerEncabezados() async {
     var uri = Uri.https(_baseUrl, '/v2/top-headlines',
         {'country': _pais, 'apiKey': _apiKey});
@@ -56,7 +60,7 @@ class NoticiasService with ChangeNotifier {
   }
   
   obtenerArticulosPorCategoria( String categoria ) async {
-    if ( mapaArticulos[categoria]?.length != null || mapaArticulos[categoria]!.isNotEmpty ) {
+    if ( mapaArticulos[categoria]!.length > 0 ) {
       return mapaArticulos[categoria];
     }
     
@@ -65,8 +69,18 @@ class NoticiasService with ChangeNotifier {
     final resp = await http.get(uri);
 
     final categoriaResponse = noticiasResponseFromJson( resp.body );
-    mapaArticulos[categoria]?.addAll( categoriaResponse.articles );
+    mapaArticulos[categoria]!.addAll( categoriaResponse.articles );
     notifyListeners();
+  }
+
+  enviarSitioWeb( String sitio ) async {
+    final url = sitio;
+    final uri = Uri.parse(url);
+    if ( await canLaunchUrl(uri) ) {
+      await launchUrl(uri);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
 }

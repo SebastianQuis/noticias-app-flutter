@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:noticias_app/models/noticias_models.dart';
+import 'package:noticias_app/services/noticias_service.dart';
 import 'package:noticias_app/theme/theme.dart';
+import 'package:provider/provider.dart';
 
 class ListaNoticias extends StatefulWidget {  
   final List<Article> encabezados;
@@ -45,36 +47,47 @@ class _TarjetaBotones extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final noticiaService = Provider.of<NoticiasService>(context);
+
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          RawMaterialButton(
-            onPressed: () {
-              print('${encabezados.url}');
-              // print('${encabezados.}');
-            },
-            fillColor: AppTheme.celeste,
-            shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(20)),
-            child: Row(
-              children: [
-                Icon(Icons.web),
-                Text(' Web')
-              ],
+          Container(
+            width: 250,
+            child: RawMaterialButton(
+              onPressed: () {
+                print('${encabezados.url}');
+                // print('${encabezados.}');
+              },
+              fillColor: AppTheme.celeste,
+              shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(20)),
+              child: ( encabezados.publishedAt.month < 10) 
+                        ? Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.calendar_month_outlined),
+                            Text('${encabezados.publishedAt.day} - 0${encabezados.publishedAt.month} - ${encabezados.publishedAt.year}', maxLines: 1,),
+                          ],
+                        )
+                        : Center(child: Text('${encabezados.publishedAt.day} - ${encabezados.publishedAt.month} - ${encabezados.publishedAt.year}', maxLines: 1,)),
             ),
           ),
 
           SizedBox( width: 10 ),
           
           RawMaterialButton(
-            onPressed: () {}, //TODO: enviar a sitio web
+            onPressed: () {
+              print('${encabezados.url}');
+              noticiaService.enviarSitioWeb(encabezados.url);
+            }, //TODO: enviar a sitio web
             fillColor: AppTheme.rojo,
             shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(20)),
             child: Row(
               children: [
-                Icon(Icons.more_outlined),
-                Text(' algo')
+                Icon(Icons.web),
+                Text(' Web')
               ],
             ),
           ),
