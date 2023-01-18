@@ -57,7 +57,9 @@ class _CategoriaBoton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print('${categoria.name}');
+        final noticiaService = Provider.of<NoticiasService>(context, listen: false);
+        noticiaService.categoriaSeleccionada = categoria.name; // enviando la categoria selecionada
+        print(noticiaService.categoriaSeleccionada);
       },
       child: Container(
         width: 80,
@@ -68,6 +70,7 @@ class _CategoriaBoton extends StatelessWidget {
         ),
         child: Icon( 
           categoria.icon,
+          size: 16,
           color: Colors.grey[850],
         )
       ),
