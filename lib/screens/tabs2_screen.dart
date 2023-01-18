@@ -26,6 +26,7 @@ class _ListaCategorias extends StatelessWidget {
   Widget build(BuildContext context) {
     
     final categorias = Provider.of<NoticiasService>(context).categorias;
+    final noticiasService = Provider.of<NoticiasService>(context);
 
     return ListView.builder(
       physics: BouncingScrollPhysics(), // ios android
@@ -39,7 +40,9 @@ class _ListaCategorias extends StatelessWidget {
             children: [
               _CategoriaBoton( categorias[index] ),
               SizedBox(height: 5),
-              Text('${nombre[0].toUpperCase()}${nombre.substring(1)}' )
+              ( noticiasService.categoriaSeleccionada == categorias[index].name ) 
+                ? Text('${nombre[0].toUpperCase()}${nombre.substring(1)}', style: TextStyle(color: AppTheme.rojo),)
+                : Text('${nombre[0].toUpperCase()}${nombre.substring(1)}')
             ],
           ),
         );
@@ -55,6 +58,8 @@ class _CategoriaBoton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final noticiaService = Provider.of<NoticiasService>(context);
+
     return GestureDetector(
       onTap: () {
         final noticiaService = Provider.of<NoticiasService>(context, listen: false);
@@ -66,12 +71,14 @@ class _CategoriaBoton extends StatelessWidget {
         height: 40,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: AppTheme.celesteSemiOscuro.withOpacity(0.5),
+          color: AppTheme.primary,
         ),
         child: Icon( 
           categoria.icon,
           size: 16,
-          color: Colors.grey[850],
+          color: ( noticiaService.categoriaSeleccionada == this.categoria.name) 
+                    ? AppTheme.rojo
+                    : AppTheme.blanco
         )
       ),
     );
