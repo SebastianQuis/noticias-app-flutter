@@ -24,7 +24,7 @@ class _ListaNoticiasState extends State<ListaNoticias> with AutomaticKeepAliveCl
             _TarjetaTitulo( widget.encabezados[index] ),
             _TarjetaImagen( widget.encabezados[index] ),
             _TarjetaBody( widget.encabezados[index] ),
-            _TarjetaBotones(),
+            _TarjetaBotones( widget.encabezados[index] ),
 
             SizedBox( height: 5 ),
             Divider(),
@@ -39,27 +39,44 @@ class _ListaNoticiasState extends State<ListaNoticias> with AutomaticKeepAliveCl
 }
 
 class _TarjetaBotones extends StatelessWidget {
-  
+  final Article encabezados;
+
+  const _TarjetaBotones(  this.encabezados );
+
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           RawMaterialButton(
-            onPressed: () {},
-            fillColor: theme.accentColor,
+            onPressed: () {
+              print('${encabezados.url}');
+              // print('${encabezados.}');
+            },
+            fillColor: AppTheme.celeste,
             shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(20)),
-            child: Icon(Icons.star_outline),
+            child: Row(
+              children: [
+                Icon(Icons.web),
+                Text(' Web')
+              ],
+            ),
           ),
 
           SizedBox( width: 10 ),
           
           RawMaterialButton(
             onPressed: () {}, //TODO: enviar a sitio web
-            fillColor: Colors.green[200],
+            fillColor: AppTheme.rojo,
             shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(20)),
-            child: Icon(Icons.more_outlined),
+            child: Row(
+              children: [
+                Icon(Icons.more_outlined),
+                Text(' algo')
+              ],
+            ),
           ),
         ],
       ),
@@ -76,7 +93,7 @@ class _TarjetaBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric( horizontal: 25 ),
+      padding: EdgeInsets.symmetric( horizontal: 25, vertical: 5 ),
       child: encabezados.description != null
         ? Text( encabezados.description!, style: TextStyle(overflow: TextOverflow.ellipsis), maxLines: 3, )
         : Text(''),
@@ -131,11 +148,11 @@ class _TarjetaTop extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric( horizontal: 10 ),
-      margin: EdgeInsets.all(5),
+      margin: EdgeInsets.all(10),
       child: Row(
         children: [
-          Text( '${ index + 1 }. ' , style: TextStyle( fontSize: 20, color: theme.accentColor, fontWeight: FontWeight.w700)),
-          Text( '${ encabezados.source.name }', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),),
+          Text( '${ index + 1 }. ' , style: TextStyle( fontSize: 20, fontWeight: FontWeight.bold)),
+          Text( '${ encabezados.source.name }', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
         ],
       ),
     );

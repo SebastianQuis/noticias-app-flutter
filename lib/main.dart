@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Noticias App',
       initialRoute: 'tabs',
-      theme: theme,
+      theme: AppTheme.lightTheme,
       routes: {
         'tabs': (context) => TabsScreen(),
         'tab1': (context) => Tab1Screen(),

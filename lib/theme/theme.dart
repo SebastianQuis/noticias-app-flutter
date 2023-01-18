@@ -1,11 +1,89 @@
 import 'package:flutter/material.dart';
 
-final theme = ThemeData.dark().copyWith(
-  accentColor: Color.fromARGB(255, 93, 156, 238),
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    backgroundColor: Colors.white,
-    selectedItemColor: Color.fromARGB(255, 93, 156, 238),
-    unselectedItemColor: Colors.black54
-  ),
-  // progressIndicatorTheme: ProgressIndicatorThemeData(color: Color.fromARGB(255, 93, 156, 238),)
-);
+class AppTheme {
+  static const Color primary = Color.fromARGB(255, 29, 53, 87); 
+  static const Color celesteSemiOscuro = Color.fromARGB(255, 69, 123, 157); 
+  static const Color celeste = Color.fromARGB(255, 168, 218, 220); 
+  static const Color blanco = Color.fromARGB(255, 241, 250, 238); 
+  static const Color rojo = Color.fromARGB(255, 230, 57, 70); 
+
+  //TODO: lightTheme / darkTheme
+  // variarlo dependiendo del dia/noche
+
+  static final ThemeData lightTheme = ThemeData.light().copyWith(
+    primaryColor: primary,
+    appBarTheme: const AppBarTheme(
+      color: primary,
+      elevation: 0
+    ),
+    
+    //estilo de botones
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(primary: primary)
+    ),
+
+    //floatingActiongButtons
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: primary,
+      elevation: 5, 
+    ),
+
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: primary,
+      selectedItemColor: blanco,
+      unselectedItemColor: blanco.withOpacity(0.3)
+    ),
+
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        primary: primary,
+        shape: const StadiumBorder(),
+        elevation: 0
+      ),
+    ),
+    
+    inputDecorationTheme: const InputDecorationTheme(
+      labelStyle: TextStyle( color: Colors.black ),
+      // border: OutlineInputBorder(
+      //   borderRadius: BorderRadius.only( bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
+      // ),
+      
+      // enabledBorder: OutlineInputBorder(
+      //   borderSide: BorderSide(color: primary),
+      //   borderRadius: BorderRadius.only( bottomLeft: Radius.circular(10), topRight: Radius.circular(10))
+      // ),
+
+      // focusedBorder: OutlineInputBorder(
+      //   borderSide: BorderSide(color: primary),
+      //   borderRadius: BorderRadius.only( bottomLeft: Radius.circular(10), topRight: Radius.circular(10))
+      // ),
+    ),
+
+    
+  );
+  
+  static final ThemeData darkTheme = ThemeData.dark().copyWith(
+    primaryColor: primary,
+    appBarTheme: const AppBarTheme(
+      color: primary,
+      elevation: 0
+    ),
+    
+    scaffoldBackgroundColor: Colors.black54
+  );
+
+  
+  
+}
+
+// final theme = ThemeData.light().copyWith(
+//   accentColor: Color.fromARGB(255, 93, 156, 238),
+//   primaryColor: Color.fromARGB(255, 69, 123, 157), // blanco
+//   // rojo
+//   bottomNavigationBarTheme: BottomNavigationBarThemeData(
+//     backgroundColor: Color.fromARGB(255, 29, 53, 87),
+//     selectedItemColor: Color.fromARGB(255, 241, 250, 238),
+//     unselectedItemColor: Colors.black87
+//   ),
+//   // progressIndicatorTheme: ProgressIndicatorThemeData(color: Color.fromARGB(255, 93, 156, 238),)
+// );
