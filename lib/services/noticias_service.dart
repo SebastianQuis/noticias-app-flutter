@@ -15,30 +15,25 @@ class NoticiasService with ChangeNotifier {
   final _pais    = 'us';
 
   List<Article> encabezados = [];
-  String _categoriaSeleccionada = 'business'; // por defecto
+  String _categoriaSeleccionada = 'business';
 
   List<Categoria> categorias = [
-    Categoria( FontAwesomeIcons.building, 'business'),
+    Categoria( FontAwesomeIcons.briefcase, 'business'),
     Categoria( FontAwesomeIcons.tv, 'entertainment'),
     Categoria( FontAwesomeIcons.addressCard, 'general'),
     Categoria( FontAwesomeIcons.headSideVirus, 'health'),
     Categoria( FontAwesomeIcons.vials, 'science'),
     Categoria( FontAwesomeIcons.futbol, 'sports'),
-    Categoria( FontAwesomeIcons.memory, 'technology'),
+    Categoria( FontAwesomeIcons.laptopCode, 'technology'),
   ];
 
-  // business entertainment general health science sports technology
-
-  Map<String, List<Article>> mapaArticulos = {}; // para guadar las listas de categorias
-
+  Map<String, List<Article>> mapaArticulos = {};
   
   NoticiasService(){
     obtenerEncabezados();
-
     categorias.forEach( (item) { 
       mapaArticulos[item.name] = [];
     });
-
     obtenerArticulosPorCategoria(categoriaSeleccionada);
   }
 
@@ -46,7 +41,7 @@ class NoticiasService with ChangeNotifier {
 
   set categoriaSeleccionada( String valor ) {
     _categoriaSeleccionada = valor;
-    obtenerArticulosPorCategoria(valor); // ejecuta cuando cambia a otra categoria
+    obtenerArticulosPorCategoria(valor); 
     notifyListeners(); 
   }
 
@@ -83,5 +78,4 @@ class NoticiasService with ChangeNotifier {
       throw 'Could not launch $uri';
     }
   }
-
 }

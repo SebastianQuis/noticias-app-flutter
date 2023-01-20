@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:noticias_app/providers/navigation_provider.dart';
 import 'package:noticias_app/screens/screens.dart';
- 
 import 'package:provider/provider.dart';
 
 class TabsScreen extends StatelessWidget {

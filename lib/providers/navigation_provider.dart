@@ -6,15 +6,15 @@ class NavigationProvider extends ChangeNotifier {
   final PageController _pageController = PageController();
 
   int get paginaActual {
-    return this._paginaActual;
+    return _paginaActual;
   }
 
   set paginaActual(int valor) {
-    this._paginaActual = valor;
-    this._pageController.
+    _paginaActual = valor;
+    _pageController.
       animateToPage(valor, duration: const Duration(milliseconds: 500), curve: Curves.ease);
     notifyListeners();
   }
 
-  PageController get pageController => this._pageController;
+  PageController get pageController => _pageController;
 }

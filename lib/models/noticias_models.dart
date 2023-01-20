@@ -2,6 +2,8 @@
 //
 //     final noticiasResponse = noticiasResponseFromJson(jsonString);
 
+// ignore_for_file: constant_identifier_names
+
 import 'dart:convert';
 
 NoticiasResponse noticiasResponseFromJson(String str) => NoticiasResponse.fromJson(json.decode(str));

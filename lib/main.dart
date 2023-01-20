@@ -14,11 +14,12 @@ void main() async {
       ChangeNotifierProvider(create: (_) =>  ThemeProvider(esModoOscuro: Preferences.esModoOscuro)),
       ChangeNotifierProvider(create: (_) =>  NoticiasService()),
     ],
-    child: MyApp(),
+    child: const MyApp(),
   ));
 } 
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +30,9 @@ class MyApp extends StatelessWidget {
       theme: Provider.of<ThemeProvider>(context).themeData,
       routes: {
         'tabs'      : (_) => TabsScreen(),
-        'home'      : (_) => HomeScreen(),
-        'categories': (_) => CategoriesScreen(),
-        'settings': (_) => SettingsScreen(),
+        'home'      : (_) => const HomeScreen(),
+        'categories': (_) => const CategoriesScreen(),
+        'settings'  : (_) => SettingsScreen(),
       },
     );
   }

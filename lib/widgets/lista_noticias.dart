@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:noticias_app/models/noticias_models.dart';
+import 'package:noticias_app/models/models.dart';
 import 'package:noticias_app/services/noticias_service.dart';
 import 'package:noticias_app/theme/theme.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +13,6 @@ class ListaNoticias extends StatefulWidget {
   State<ListaNoticias> createState() => _ListaNoticiasState();
 }
 
-// mantiene estado de la app AutomaticKeepAliveClientMixin
 class _ListaNoticiasState extends State<ListaNoticias> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
@@ -37,7 +36,7 @@ class _ListaNoticiasState extends State<ListaNoticias> with AutomaticKeepAliveCl
   }
   
   @override
-  bool get wantKeepAlive => true; // true para mantener estado
+  bool get wantKeepAlive => true;
 }
 
 class _TarjetaBotones extends StatelessWidget {
@@ -52,22 +51,21 @@ class _TarjetaBotones extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Container(
             width: 250,
             height: 38,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(20)),
-              color: AppTheme.celeste
-            ),
             child: ( encabezados.publishedAt.month < 10) 
               ? Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Icon(Icons.calendar_month_outlined, color: Colors.black,),
-                  Text('${encabezados.publishedAt.day} - 0${encabezados.publishedAt.month} - ${encabezados.publishedAt.year}', maxLines: 1,),
+                  Text('Fecha: ${encabezados.publishedAt.day}/0${encabezados.publishedAt.month}/${encabezados.publishedAt.year}',
+                    maxLines: 1,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold, letterSpacing: 0.5, 
+                    ),
+                  ),
                 ],
               )
               : Center(child: Text('${encabezados.publishedAt.day} - ${encabezados.publishedAt.month} - ${encabezados.publishedAt.year}', maxLines: 1,)),
@@ -79,7 +77,7 @@ class _TarjetaBotones extends StatelessWidget {
             onPressed: () {
               print('${encabezados.url}');
               noticiaService.enviarSitioWeb(encabezados.url);
-            }, //TODO: enviar a sitio web
+            },
             fillColor: AppTheme.rojo,
             shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(20)),
             child: Row(
@@ -104,9 +102,9 @@ class _TarjetaBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric( horizontal: 25, vertical: 5 ),
+      padding: const EdgeInsets.symmetric( horizontal: 25, vertical: 5 ),
       child: encabezados.description != null
-        ? Text( encabezados.description!, style: TextStyle(overflow: TextOverflow.ellipsis), maxLines: 3, )
+        ? Text( encabezados.description!, style: TextStyle(overflow: TextOverflow.ellipsis, letterSpacing: 0.5), maxLines: 3, )
         : Text(''),
     );
   }
@@ -143,8 +141,8 @@ class _TarjetaTitulo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 25),
-      child: Text('${encabezados.title}', style: TextStyle( fontSize: 16, overflow: TextOverflow.ellipsis), maxLines: 3,),
+      padding: const EdgeInsets.symmetric(horizontal: 25),
+      child: Text( encabezados.title, style: const TextStyle( fontSize: 16, overflow: TextOverflow.ellipsis), maxLines: 3,),
     );
   }
 }
@@ -163,7 +161,7 @@ class _TarjetaTop extends StatelessWidget {
       child: Row(
         children: [
           Text( '${ index + 1 }. ' , style: TextStyle( fontSize: 20, fontWeight: FontWeight.bold)),
-          Text( '${ encabezados.source.name }', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+          Text( encabezados.source.name, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
         ],
       ),
     );

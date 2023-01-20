@@ -25,9 +25,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
               TextFormField(
                 initialValue: Preferences.nombre,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                     hintText: 'Nombre',
-                    prefixIcon: Icon(Icons.person_outline_rounded)),
+                    prefixIcon: Icon(Icons.person_outline_rounded, color: Preferences.esModoOscuro ? AppTheme.celeste : AppTheme.primary)),
                 onChanged: (value) {
                   Preferences.nombre = value;
                   setState(() {});
@@ -47,9 +47,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     : themeProvider.setLightMode();
                   setState(() {});
                 },
-                secondary: const Icon(
+                secondary: Icon(
                   Icons.light_mode_outlined,
-                  color: AppTheme.primary,
+                  color: Preferences.esModoOscuro ? AppTheme.celeste : AppTheme.primary
                 ),
               ),
               const Divider(),
@@ -73,14 +73,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Preferences.genero = value ?? 2;
                   setState(() {});
                 },
-              ),
-              // Column(
-              //   children: [
-              //     Text('modo oscurso: ${Preferences.esModoOscuro}'),
-              //     Text('nombre: ${Preferences.nombre}'),
-              //     Text('genero: ${Preferences.genero}'),
-              //   ],
-              // )
+              ),  
             ],
           ),
         ),
@@ -96,6 +89,6 @@ class _TitleBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(titulo,
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold));
+        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold));
   }
 }

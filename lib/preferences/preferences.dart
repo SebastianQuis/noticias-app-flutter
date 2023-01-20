@@ -10,7 +10,6 @@ class Preferences {
 
   static Future init() async {
     _prefs = await SharedPreferences.getInstance();
-    // _prefs.clear();
   }
 
   static String get nombre => _prefs.getString('nombre') ?? _nombre;
