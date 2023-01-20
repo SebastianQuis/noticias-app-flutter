@@ -33,6 +33,7 @@ class _Navegacion extends StatelessWidget {
       items: [
         BottomNavigationBarItem( icon: Icon(Icons.home_outlined), label: 'Home' ),
         BottomNavigationBarItem( icon: Icon(Icons.category_outlined), label: 'Categories'),
+        BottomNavigationBarItem( icon: Icon(Icons.person_outline), label: 'Settings'),
       ]
     );
   }
@@ -48,8 +49,9 @@ class _Paginas extends StatelessWidget {
       physics: NeverScrollableScrollPhysics(),
       controller: navigationProvider.pageController,
       children: [
-        Tab1Screen(),
-        Tab2Screen(),
+        HomeScreen(),
+        CategoriesScreen(),
+        SettingsScreen(),
       ],
     );
   }

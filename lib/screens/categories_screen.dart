@@ -5,12 +5,11 @@ import 'package:noticias_app/theme/theme.dart';
 import 'package:noticias_app/widgets/lista_noticias.dart';
 import 'package:provider/provider.dart';
  
-class Tab2Screen extends StatelessWidget {
+class CategoriesScreen extends StatelessWidget {
  
   @override
   Widget build(BuildContext context) {
     final noticiasService = Provider.of<NoticiasService>(context);
-
     return SafeArea(
       child: Scaffold(
         body: Column(

@@ -3,7 +3,7 @@ import 'package:noticias_app/services/noticias_service.dart';
 import 'package:noticias_app/widgets/lista_noticias.dart';
 import 'package:provider/provider.dart';
  
-class Tab1Screen extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
   
 
   @override
@@ -12,6 +12,6 @@ class Tab1Screen extends StatelessWidget {
     
     return noticiasService.encabezados.length > 0
       ? ListaNoticias( noticiasService.encabezados )
-      : Center( child: CircularProgressIndicator() );
+      : Center( child: CircularProgressIndicator.adaptive() );
   }
 }

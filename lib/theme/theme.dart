@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
+  
   static const Color primary = Color.fromARGB(255, 29, 53, 87); 
   static const Color celesteSemiOscuro = Color.fromARGB(255, 69, 123, 157); 
   static const Color celeste = Color.fromARGB(255, 168, 218, 220); 
   static const Color blanco = Color.fromARGB(255, 241, 250, 238); 
   static const Color rojo = Color.fromARGB(255, 230, 57, 70); 
-
-  //TODO: lightTheme / darkTheme
-  // variarlo dependiendo del dia/noche
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
     primaryColor: primary,
@@ -17,12 +15,10 @@ class AppTheme {
       elevation: 0
     ),
     
-    //estilo de botones
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(primary: primary)
     ),
 
-    //floatingActiongButtons
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: primary,
       elevation: 5, 
@@ -44,19 +40,9 @@ class AppTheme {
     
     inputDecorationTheme: const InputDecorationTheme(
       labelStyle: TextStyle( color: Colors.black ),
-      // border: OutlineInputBorder(
-      //   borderRadius: BorderRadius.only( bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
-      // ),
-      
-      // enabledBorder: OutlineInputBorder(
-      //   borderSide: BorderSide(color: primary),
-      //   borderRadius: BorderRadius.only( bottomLeft: Radius.circular(10), topRight: Radius.circular(10))
-      // ),
-
-      // focusedBorder: OutlineInputBorder(
-      //   borderSide: BorderSide(color: primary),
-      //   borderRadius: BorderRadius.only( bottomLeft: Radius.circular(10), topRight: Radius.circular(10))
-      // ),
+      prefixIconColor: primary,
+      border: InputBorder.none,
+      // focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: AppTheme.primary))
     ),
 
     

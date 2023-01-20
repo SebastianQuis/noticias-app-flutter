@@ -53,26 +53,24 @@ class _TarjetaBotones extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
             width: 250,
-            child: RawMaterialButton(
-              onPressed: () {
-                print('${encabezados.url}');
-                // print('${encabezados.}');
-              },
-              fillColor: AppTheme.celeste,
-              shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(20)),
-              child: ( encabezados.publishedAt.month < 10) 
-                        ? Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.calendar_month_outlined),
-                            Text('${encabezados.publishedAt.day} - 0${encabezados.publishedAt.month} - ${encabezados.publishedAt.year}', maxLines: 1,),
-                          ],
-                        )
-                        : Center(child: Text('${encabezados.publishedAt.day} - ${encabezados.publishedAt.month} - ${encabezados.publishedAt.year}', maxLines: 1,)),
+            height: 38,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+              color: AppTheme.celeste
             ),
+            child: ( encabezados.publishedAt.month < 10) 
+              ? Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.calendar_month_outlined, color: Colors.black,),
+                  Text('${encabezados.publishedAt.day} - 0${encabezados.publishedAt.month} - ${encabezados.publishedAt.year}', maxLines: 1,),
+                ],
+              )
+              : Center(child: Text('${encabezados.publishedAt.day} - ${encabezados.publishedAt.month} - ${encabezados.publishedAt.year}', maxLines: 1,)),
           ),
 
           SizedBox( width: 10 ),
@@ -124,12 +122,12 @@ class _TarjetaImagen extends StatelessWidget {
     return ClipRRect(
       borderRadius: const BorderRadius.all( Radius.circular(50) ),
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         child: (encabezados.urlToImage != null) 
           ? FadeInImage(
-              placeholder: AssetImage('assets/giphy.gif'), 
+              placeholder: const AssetImage('assets/giphy.gif'), 
               image: NetworkImage( '${encabezados.urlToImage}' ))
-          : FadeInImage(
+          : const FadeInImage(
               placeholder: AssetImage('assets/giphy.gif'), 
               image: AssetImage('assets/no-image.png'))
       ),

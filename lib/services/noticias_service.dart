@@ -31,6 +31,7 @@ class NoticiasService with ChangeNotifier {
 
   Map<String, List<Article>> mapaArticulos = {}; // para guadar las listas de categorias
 
+  
   NoticiasService(){
     obtenerEncabezados();
 
@@ -38,6 +39,7 @@ class NoticiasService with ChangeNotifier {
       mapaArticulos[item.name] = [];
     });
 
+    obtenerArticulosPorCategoria(categoriaSeleccionada);
   }
 
   String get categoriaSeleccionada => _categoriaSeleccionada;
@@ -74,12 +76,11 @@ class NoticiasService with ChangeNotifier {
   }
 
   enviarSitioWeb( String sitio ) async {
-    final url = sitio;
-    final uri = Uri.parse(url);
+    final uri = Uri.parse(sitio);
     if ( await canLaunchUrl(uri) ) {
       await launchUrl(uri);
     } else {
-      throw 'Could not launch $url';
+      throw 'Could not launch $uri';
     }
   }
 
